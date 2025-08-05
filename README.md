@@ -10,6 +10,7 @@
 ## Get
 ### setelah post
 <img width="1920" height="1080" alt="Screenshot (1471)" src="https://github.com/user-attachments/assets/eae78b8c-a935-4602-a7c3-47c768022b76" />
+
 ### setelah delete
 <img width="1920" height="1080" alt="Screenshot (1474)" src="https://github.com/user-attachments/assets/a656f329-c02d-4ea8-b1fc-4d76de9755c3" />
 
