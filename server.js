@@ -22,6 +22,15 @@ app.get("/contact", (req, res) => {
 res.render("contact");
 });
 
+//endpoint untuk mendapatkan data todos
+app.get("/todos-data", (res, req) =>{
+  res.json(todos); // mengembalikan data todos dalam format json
+})
+
+app.get("/todos-list", (res, req) => {
+  res.render("todos-pages", { todos: todos }); // merender todos
+})
+
 //middleware
 app.use((req, res) => {
 res.status(404).send("404 - page not found");
