@@ -7,8 +7,9 @@ require("dotenv").config();
 const db = require("./database/db");
 const port = process.env.PORT;
 
-const todoRoutes = require("./routes/todo.js");
+//const todoRoutes = require("./routes/todo.js"); //ini array, kita gk make array
 const { todos } = require("./routes/todo.js");
+const todoRoutes = require('./routes/tododb');
 
 //middleware untuk parsing json dan form
 app.use(express.urlencoded({ extended: true }));
@@ -26,6 +27,15 @@ app.get("/", (req, res) => {
 
 app.get("/contact", (req, res) => {
 res.render("contact");
+});
+
+app.get("/todo-view", (req, res) => {
+  db.query("SELECT * FROM todos", (err, todos) => {
+    if(err) return res.status(500).send("Internal Server Error");
+    res.render("todo", {
+      todos: todos,
+    });
+  });
 });
 
 //endpoint untuk mendapatkan data todos
@@ -84,6 +94,8 @@ app.delete("/todos-list/delete/:id", (req, res) => {
   todos.splice(index, 1);
   res.redirect("/todos-list");
 });
+
+
 
 //middleware
 app.use((req, res) => {
