@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 //const port = 3001;
 require("dotenv").config();
+const db = require("./database/db");
 const port = process.env.PORT;
 
 const todoRoutes = require("./routes/todo.js");
