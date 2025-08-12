@@ -48,7 +48,7 @@ app.get("/todos-list", (req, res) => {
   res.render("todos-page", { todos });
 });
 
-// POST tambah data
+// POST 
 app.post("/todos-list/add", (req, res) => {
   const { task } = req.body;
   if (!task || task.trim() === "") {
