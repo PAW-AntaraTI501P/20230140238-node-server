@@ -8,12 +8,27 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <style>
+      html,
+      body {
+        background-color: #BBDCE5;
+        height: 100%;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      main {
+        flex: 1;
+      }
+    </style>
   </head>
 
   <body>
     <div class="container mt-5">
       <h1>Contact Us</h1>
-      <a href="/" class="btn btn-primary">Go to Home Page</a>
+      <a href="/" class="btn btn-primary" style="background-color: #CFAB8D; border-color: #CFAB8D;">Go to Home Page</a>
       <form>
         <div class="form-group">
           <label for="name">Name:</label>
@@ -32,7 +47,7 @@
             required
           ></textarea>
         </div>
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" class="btn btn-success" style="background-color: #CFAB8D; border-color: #CFAB8D;">Submit</button>
       </form>
     </div>
   </body>
