@@ -47,9 +47,33 @@ app.get("/todo-view", (req, res) => {
 });
 
 // GET: Mengambil semua todos
+// app.get("/api/todos", (req, res) => {
+//   console.log("Menerima permintaan GET untuk todos.");
+//   db.query("SELECT * FROM todos", (err, todos) => {
+//     if (err) {
+//       console.error("Database query error:", err);
+//       return res.status(500).json({ error: "Internal Server Error" });
+//     }
+//     console.log("Berhasil mengirim todos:", todos.length, "item.");
+//     res.json({ todos: todos });
+//   });
+// });
+
 app.get("/api/todos", (req, res) => {
-  console.log("Menerima permintaan GET untuk todos.");
-  db.query("SELECT * FROM todos", (err, todos) => {
+  const { search } = req.query;
+  console.log(
+    `Menerima permintaan GET untuk todos. Kriteria pencarian: '${search} || "Tidak ada"}'`
+  );
+
+  let query = "SELECT * FROM todos";
+  const params = [];
+
+  if (search) {
+    query += " WHERE task LIKE ?";
+    params.push(`%${search}%`);
+  }
+
+  db.query(query, params, (err, todos) => {
     if (err) {
       console.error("Database query error:", err);
       return res.status(500).json({ error: "Internal Server Error" });
