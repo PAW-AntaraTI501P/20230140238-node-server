@@ -6,14 +6,14 @@ const router = express.Router();
 
 // endpoint registrasi
 router.post("/register", async (req, res) => {
-    const { email, password } = req.body;
-    if (!email || ! password)
+    const { name, email, password } = req.body;
+    if (!name || !email || ! password)
         return res.status(400).json({ msg: "Please enter all fields"});
 
     const hashedPassword = await bcrypt.hash(password, 10);
     db.query (
         "INSERT INTO users SET ?",
-        { email, password: hashedPassword },
+        { name, email, password: hashedPassword },
         (err) => {
             if (err) return res.status(500).json ({ error: err.message });
             res.status(201).json({ msg: "User registered successfully" });
@@ -23,7 +23,7 @@ router.post("/register", async (req, res) => {
 
 //endpoint login
 router.post("/login", (req, res) => {
-    const { email, password } = req.body;
+    const { email, password, } = req.body;
     if(!email || !password)
         return res.status(400).json({ msg: "Please enter all fields" });
 
@@ -40,7 +40,7 @@ router.post("/login", (req, res) => {
             const token = jwt.sign({ id: user.id }, "your_super_secret_jwt_key", {
                 expiresIn: 3600,
             });
-            res.json({ token, user: { id: user.id, email: user.email }});
+            res.json({ token, user: { id: user.id, email: user.email, name: user.name }});
         }
     );
 });
