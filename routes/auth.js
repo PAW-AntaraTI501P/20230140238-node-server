@@ -32,10 +32,10 @@ router.post("/login", (req, res) => {
         [email],
         async (err, results) => {
             const user = results[0];
-            if (!user) return res.status(400).json({ msg: "Invalid credentials" });
+            if (!user) return res.status(400).json({ msg: "Email tidak ditemukan" });
 
             const isMatch = await bcrypt.compare(password, user.password);
-            if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
+            if (!isMatch) return res.status(400).json({ msg: "Password salah" });
 
             const token = jwt.sign({ id: user.id }, "your_super_secret_jwt_key", {
                 expiresIn: 3600,
